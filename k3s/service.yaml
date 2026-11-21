@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    app: my-web-app
+  ports:
+    - protocol: TCP
+      port: 80           # Внутрішній порт сервісу в кластері
+      targetPort: 80     # Порт контейнера, куди шлеться трафік
+      nodePort: 30080    # Зовнішній статичний порт на самій ноді (в межах 30000-32767)

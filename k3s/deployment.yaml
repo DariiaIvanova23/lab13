@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+  namespace: default
+  labels:
+    app: my-web-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-web-app
+  template:
+    metadata:
+      labels:
+        app: my-web-app
+    spec:
+      containers:
+        - name: web-container
+          # Використовуємо готовий публічний перевірений образ
+          image: nginxdemos/hello:latest
+          ports:
+            - containerPort: 80
